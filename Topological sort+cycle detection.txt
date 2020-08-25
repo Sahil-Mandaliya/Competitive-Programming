@@ -1,0 +1,24 @@
+vector<ll> g1[maxx],g2[maxx];
+ll c1[maxx];
+ll c2[maxx];
+bool dfs1(ll u)
+{
+    c1[u]=-1;
+    ll i;
+    for(i=0;i<g1[u].size();i++)
+    {
+        if(c1[g1[u][i]]==-1)
+        {
+            return false;
+        }
+        if(c1[g1[u][i]]==0)
+        {
+            if(dfs1(g1[u][i])==false)
+            {
+                return false;
+            }
+        }
+    }
+    c1[u]=1;
+    return true;
+}

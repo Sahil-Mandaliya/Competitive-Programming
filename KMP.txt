@@ -1,0 +1,26 @@
+string get(string s)
+{
+    string t=s;
+    reverse(t.begin(),t.end());
+    string t1=s+'*'+t;
+    ll k=0,i;
+    ll sz=t1.length();
+    ll pref[sz];
+    pref[0]=0;
+    i=1;
+    while(i<sz)
+    {
+        while(k!=0&&t1[i]!=t1[k])
+        {
+            k=pref[k-1];
+        }
+        if(t1[i]==t1[k])
+        {
+            k++;
+        }
+        pref[i]=k;
+        i++;
+    }
+    //cout<<t1<<" x "<<k<<endl;
+    return t1.substr(0, k);
+}

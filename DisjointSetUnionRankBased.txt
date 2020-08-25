@@ -1,0 +1,103 @@
+//problem link-https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/practice-problems/algorithm/separating-numbers-6fe976a9/description/?layout=old
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define endl '\n'
+#define pii pair<ll,ll>
+#define N 100007
+#define mod 1000000007
+#define pb push_back;
+#define FAST ios_base::sync_with_stdio(false); cin.tie(NULL);
+#define ul 10000000000
+map<ll,map<ll,ll>> mp;
+vector<ll> par(3*N);
+void init()
+{
+    ll i;
+    for(i=0;i<3*N;i++)
+    {
+        par[i]=i;
+    }
+}
+ll find(ll x,ll y)
+{
+  //  cout<<"before="<<x<<" "<<y<<endl;
+    while(par[x]!=x)
+    {
+        x=par[x];
+    }
+    while(par[y]!=y)
+    {
+        y=par[y];
+    }
+   // cout<<"after="<<x<<" "<<y<<" "<<mp[x].size()<<" "<<mp[y].size()<<endl;
+    ll sm=0;
+    if(mp[x].size()>mp[y].size())
+    {
+        for(auto i:mp[y])
+        {
+            if(mp[x][i.first]>0)
+            {
+                sm+=(mp[x][i.first]*mp[y][i.first]);
+            }
+            mp[x][i.first]+=i.second;
+        }
+        par[y]=x;
+    }
+    else
+    {
+        for(auto i:mp[x])
+        {
+            if(mp[y][i.first]>0)
+            {
+                sm+=(mp[x][i.first]*mp[y][i.first]);
+            }
+            mp[y][i.first]+=i.second;
+        }
+        par[x]=y;
+    }
+    return sm;
+}
+int main()
+{
+    init();
+    ll n;
+    cin>>n;
+    vector<pii> v;
+    v.push_back(make_pair(0,0));
+    ll x,y,i;
+    for(i=0;i<n-1;i++)
+    {
+        cin>>x>>y;
+        v.push_back(make_pair(x,y));
+    }
+    vector<ll> clr;
+    clr.push_back(0);
+    for(i=0;i<n;i++)
+    {
+        cin>>x;
+        clr.push_back(x);
+        mp[i+1][x]++;
+    }
+    vector<ll> qry;
+    for(i=0;i<n-1;i++)
+    {
+        cin>>x;
+        qry.push_back(x);
+    }
+    vector<ll> ans;
+    
+    for(i=n-2;i>=0;i--)
+    {
+        x=v[qry[i]].first;
+        y=v[qry[i]].second;
+        ans.push_back(find(x,y));
+    }
+    reverse(ans.begin(),ans.end());
+    for(i=0;i<n-1;i++)
+    {
+        cout<<ans[i]<<endl;
+    }
+}

@@ -1,0 +1,50 @@
+###				 Combination with repetition 
+    The formula for computing a k-combination with repetitions from n elements is:
+	(n+k−1)C (k)=(n+k−1) C (n−1);
+
+####			Sum of product of all triplet =(1+a1)*(1+a2)*...*(a+an)-1;
+Now take three numbers a, b, c:-
+   = a + b + c + ab + bc + ca + abc 
+   = a + ac + b + bc + ab + abc + c + 1 - 1
+   = a(1+c) + b(1+c) + ab(1+c) + c + 1 - 1
+   = (a + b + ab + 1)(1+c) - 1 
+   = (1+a) * (1+b) * (1+c) - 1  
+
+#######			for making of star graph 
+if constraint on graph is that you are given some pair of vertices on which you can not make a edge 
+say that number is m and number of vertices is n so you can make star graph if m<n/2
+
+
+#############################	FACT ABOUT PRIME
+https://codeforces.com/problemset/problem/584/D
+
+There is a fact that the distance between adjacent prime numbers isn't big. 
+For n = 109 maximal distanse is 282. So let's find maximal prime p, 
+such that p < n - 1 (we can just decrease n while it's not prime(we can check it in )). 
+We know that n - p < 300. Now we have even (because n and p are odd) 
+number n - p and we should divide it into a sum of two primes. As n - p < 300, 
+we can just iterate over small primes P and check if P is prime and n - p - P is prime. 
+You can check that there is a solution for all even numbers less than 300 by bruteforce.
+
+
+
+It is known that amount of prime numbers non greater than n is about n/logn.
+
+We can also found the amount of palindrome numbers with fixed length k — it is about 10^((k+1)/2).
+Therefore the number of primes asymptotically bigger than the number of palindromic numbers 
+and for every constant A there is an answe
+##############################################
+		TREE IS A BIPIRATE GRAPH WHEN THEY ARE ORDERED IN SOME MANNER(MOSTLY LEVELWISE)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+		MAKE TRIANGLES USING POLYGON
+if we wnat to make triangle using consecutive polygon with n vertices then
+	if we can choose any three then nC3
+	if triangle must share a side with polygin then (n-2 )*(n-2)
+
+	PYTHAGORAS TRIPLETS
+pythagoras triplet
+if one side is n
+then if(n%2==0) then others are n*n/4-1 and n*n/4+1
+     else 	others are n*n/2 and n*n/2+1 

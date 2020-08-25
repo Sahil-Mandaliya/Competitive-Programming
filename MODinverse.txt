@@ -1,0 +1,16 @@
+#define md 1000000007
+ll inverse(ll x)
+{
+    ll ml=1;
+    ll y=md-2;
+    while(y>0)
+    {
+        if(y&1)
+        {
+            ml=(ml*x)%md;
+        }
+        x=(x*x)%md;
+        y/=2;
+    }
+    return ml;
+}

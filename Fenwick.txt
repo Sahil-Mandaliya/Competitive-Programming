@@ -1,0 +1,61 @@
+https://codeforces.com/contest/61/problem/E
+
+#include<bits/stdc++.h>
+#define ll long long
+#define mod 1000000007
+using namespace std;
+vector<ll> v(1000007);
+vector<ll> fenwick1(1000007),fenwick2(1000007);
+ll receive(ll n,vector<ll> &v1)
+{
+    ll p=n;
+    ll sm=0;
+    while(n>0)
+    {
+        sm+=v1[n];
+        n-=(n&-n);
+    }
+    return sm;
+}
+void add(ll p,ll val,ll n,vector<ll> &v1)
+{
+    while(p<=n&&p<=1e9)
+    {
+        v1[p]+=val;
+        p+=(p&-p);
+    }
+}
+int main()
+{
+    ll n,m;
+    cin>>n;
+    ll i,j,k,l,r,x,sm=0;
+    map<ll,ll> mp;
+    vector<ll> a(n);
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+        v[i]=a[i];
+    }
+    sort(a.begin(),a.end());
+    for(i=0;i<n;i++)
+    {
+        mp[a[i]]=i+1;
+    }
+    for(i=0;i<n;i++)
+    {
+        a[i]=mp[v[i]];
+    }
+    for(i=n-1;i>=0;i--)
+    {
+        ll val=0;
+        if(a[i]!=1)
+        {
+            val=receive(a[i]-1,fenwick1);
+            sm+=receive(a[i]-1,fenwick2);
+        }
+        add(a[i],1,n,fenwick1);
+        add(a[i],val,n,fenwick2);
+    }
+    cout<<sm;
+}
