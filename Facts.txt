@@ -2,7 +2,7 @@
     The formula for computing a k-combination with repetitions from n elements is:
 	(n+k−1)C (k)=(n+k−1) C (n−1);
 
-####			Sum of product of all triplet =(1+a1)*(1+a2)*...*(a+an)-1;
+####			sum of product of all subsequences =(1+a1)*(1+a2)*...*(a+an)-1;
 Now take three numbers a, b, c:-
    = a + b + c + ab + bc + ca + abc 
    = a + ac + b + bc + ab + abc + c + 1 - 1
