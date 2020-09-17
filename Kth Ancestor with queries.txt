@@ -1,0 +1,82 @@
+//Que Link - https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/practice-problems/algorithm/family-tree-of-aman-f2e011b3/?layout=old
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define endl '\n'
+#define pii pair<ll,ll>
+#define N 5*100007
+#define pb push_back;
+#define FAST ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+vector<ll> g[N];
+vector<ll> vs(N);
+ll par[N][21];
+
+void initialise()
+{
+    ll i=0,j;
+    memset(par,-1,sizeof par);
+    for(i=0;i<N;i++)
+    {
+        par[i][0]=i;
+    }
+}
+void dfs(ll s)
+{
+    ll i;
+    vs[s]=true;
+    for(i=0;i<g[s].size();i++)
+    {
+        if(vs[g[s][i]]==false)
+        {
+            dfs(g[s][i]);
+            par[g[s][i]][1]=s;
+        }
+    }
+}
+
+int main() 
+{
+    FAST;
+    ll n,q,i,j,x,y;
+    cin>>n>>q;
+    initialise();
+    for(i=0;i<n-1;i++)
+    {
+        cin>>x>>y;
+        g[x].push_back(y);
+        g[y].push_back(x);
+    }
+    dfs(1);
+
+    for(i=2;i<20;i++)
+    {
+        for(j=1;j<=n;j++)
+        {
+            if(par[j][i-1]>=0)
+            {
+                par[j][i]=par[par[j][i-1]][i-1];
+            }
+            else
+            {
+                par[j][i]=-1;
+            }
+        }
+    }
+    while(q--)
+    {
+        cin>>x>>y;
+        
+        for(i=0;i<20;i++)
+        {
+            if((1LL<<i)&y)
+            {
+                x=par[x][i+1];
+				if(x==-1)break;
+            }
+        }
+        cout<<x<<endl;
+    }
+}
