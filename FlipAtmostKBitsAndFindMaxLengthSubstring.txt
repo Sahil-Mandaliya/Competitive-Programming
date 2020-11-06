@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+
+ll fun(string &s,ll n,ll k, char ch) 
+{ 
+    ll maxlen = 1; 
+    ll cnt = 0; 
+    ll l = 0, r = 0; 
+      
+    while(r < n) 
+    { 
+      
+        if(s[r] != ch) 
+        {
+            ++cnt;
+        }
+  
+        while(cnt > k) 
+        { 
+            if(s[l] != ch) 
+            {
+                --cnt;
+            }
+            ++l; 
+        } 
+
+        maxlen = max(maxlen, r - l + 1); 
+        ++r; 
+    } 
+    return maxlen; 
+}
+int main() 
+{
+    ll n,m;
+    cin>>n>>m;
+    
+    string s;
+    cin>>s;
+    
+    ll mx=0;
+    mx=max(mx,fun(s,n,m,'0'));
+    mx=max(mx,fun(s,n,m,'1'));
+    
+    cout<<mx<<endl;
+    
+}
