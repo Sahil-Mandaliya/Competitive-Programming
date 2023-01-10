@@ -1,0 +1,89 @@
+1) Longest Common subsequence
+
+S= string S
+T= string t
+m= length of S
+n= length of T
+
+LCS(S,T,n,m) {
+    if(n==0||m==0) {
+        return 0;
+    }
+    if(S[n]==T[m]) {
+        return 1+LCS(S,T,n,m);
+    }
+    return max(
+        LCS(S,T,n,m-1),
+        LCS(S,T,n-1,m)
+    );
+}
+
+if dp[n+1][m+1]
+LCS(S,T,n,m) {
+    for(i=1;i<=n;i++) {
+        for(j=1;j<=m;j++) {
+            if(S[i]==S[j]) {
+                dp[i][j]=1+dp[i-1][j-1];
+            } else {
+                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+    }
+    return dp[n][m];
+}
+
+
+
+2) Shortest common supersequece
+S= string S
+T= string t
+m= length of S
+n= length of T
+
+lcs=LCS(S,T,n,m);
+don't include same character multiple times
+optimal solution is to not include LCS multiple times
+
+so length of Shortest common supersequece = scs
+scs = m+n-lcs
+
+3)Minimum number of insertion & deletion to convert S->T
+S= string S
+T= string t
+m= length of S
+n= length of T
+
+lcs=LCS(S,T,n,m);
+
+so worst case scenario is delete all character in s and add all character on T
+so operations=m+n;
+
+but if some characters are common then we can retain it. i.e don't delete so no need to insert , 
+so we are saving two operations here, one for delete and one for insert.
+
+so Choose LCS to not delete & insert
+
+so minimumOperations=(not delete lcs)+(not add lcs) = (n-lcs) + (m-lcs) = n+m-2*lcs;
+
+
+4) Longest Palindromic Subsequence
+
+S = string S
+m = length of S
+
+make string T;
+T=reverse(S);
+
+now if we find LCS(S,T) then it will give Longest Palindromic Subsequence.
+Think.
+
+
+5) Minimum number of deletion/insertion in a string to make it a palindrome
+
+S = string S
+m = length of S
+
+Then Find Longest Palindromic Subsequence ane remove other elements
+
+6) Print shortest common Supersequence
+While printing LCS, same method but in LCS we are ignoring charachres that do not match. here include both.

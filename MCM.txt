@@ -1,0 +1,9 @@
+1) Palindrome Partitioning
+
+Given a string, a partitioning of the string is a palindrome partitioning 
+if every substring of the partition is a palindrome. 
+For example, “aba|b|bbabb|a|b|aba” is a palindrome partitioning of “ababbbabbababa”.
+
+
+2) Evaluate Expression to True Boolean Parenthesization Recursive
+check once , nice question

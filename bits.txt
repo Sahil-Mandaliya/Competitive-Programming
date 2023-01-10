@@ -1,0 +1,9 @@
+vector<ll> convBits(ll a) {
+    ll i;
+    vector<ll> v(32,0);
+    for(i=0;i<32;i++) {
+        v[i]=a%2;
+        a/=2;
+    }
+    return v;
+}

@@ -48,3 +48,10 @@ pythagoras triplet
 if one side is n
 then if(n%2==0) then others are n*n/4-1 and n*n/4+1
      else 	others are n*n/2 and n*n/2+1 
+
+
+### XOR SUM RELATION
+a + b = (a ^ b) + 2 * (a & b)
+
+### Number of primes up to N 
+N/log(N);

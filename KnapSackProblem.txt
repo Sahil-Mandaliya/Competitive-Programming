@@ -1,0 +1,169 @@
+1) 0/1 Knapsack
+
+* Problem Statement: 
+Given weights(W) and values(P) of N items, 
+put these items in a knapsack of capacity W to get the maximum total value in the knapsack. 
+In other words, given two integer arrays W[0..N-1] and P[0..N-1] which represent weights and prices associated with N items respectively. 
+Also given an integer W which represents knapsack capacity, 
+find out the maximum value subset of Problem[] such that the sum of the weights of this subset is smaller than or equal to W. 
+You cannot break an item, either pick the complete item or don’t pick it (0-1 property)
+
+W = weight list
+P = price list
+N = length of above lists
+C = capacity of bag
+
+// f(W,P,C,N) = 
+f(W,P,C,N) = {
+    if(C==0 || N==0) {
+        return 0;
+    }
+    if(C >= W[N]) {
+        return max(
+            fn(W,P,C-W[N],N-1), fn(W,P,C,N-1);
+        )
+    } else {
+        return fn(W,P,C,N-1);
+    }
+}
+
+
+2) SubSet Sum Problem 
+
+* Problem Statement: 
+Given a set of non-negative integers, and a value sum, 
+determine if there is a subset of the given set with sum equal to given sum. 
+
+A = Number List
+N = length of above lists
+Sum = Target Sum
+
+// f(A,Sum,N) = 
+f(A,Sum,N) = {
+    if(Sum==0 ) {
+        return 1;
+    }
+    if(N==0) {
+        return 0;
+    }
+    if(Sum >= A[N]) {
+        return max(
+            f(A,Sum-A[N],N-1), f(A,Sum,N-1);
+        )
+    } else {
+        return f(A,Sum,N-1);
+    }
+}
+
+
+
+3) Equal Sum Partition
+
+* Problem Statement
+The partition problem is to determine whether a given set can be partitioned into two subsets
+such that the sum of elements in both subsets is the same. 
+
+A = Number List
+N = length of above lists
+
+// f(A,Sum,N) = 
+f(A,Sum,N) = {
+    if(Sum==0 ) {
+        return 1;
+    }
+    if(N==0) {
+        return 0;
+    }
+    if(Sum >= A[N]) {
+        return max(
+            f(A,Sum-A[N],N-1), f(A,Sum,N-1);
+        )
+    } else {
+        return f(A,Sum,N-1);
+    }
+}
+
+solve(A,N) {
+    Sum = get Sum of all elements:
+    // Bcs we want to partition elements such that both have same sum, 
+    // means have total of sum/2, 
+    // so if we find a subset with total = sum/2 then it can be partitioned with given conditon
+    if(sum%2==0) {
+        return f(A,sum/2,N)
+    }
+    return false
+}
+
+
+
+4) Count of Subsets Sum with a Given Sum
+
+5) Minimum Subset Sum Difference
+
+*Problem statement :
+Given a set of integers, 
+the task is to divide it into two sets S1 and S2 such that the absolute difference between their sums is minimum. 
+If there is a set S with n elements, 
+then if we assume Subset1 has m elements, 
+Subset2 must have n-m elements and the value of abs(sum(Subset1) – sum(Subset2)) should be minimum
+
+A = Number List
+N = length of above lists
+
+// f(A,currSum,Sum,N) = 
+f(A,currSum,Sum,N) = {
+    if(currSum==0 ) {
+        return Sum;
+    }
+    if(N==0) {
+        return 0;
+    }
+    if(min>Sum-CurrSum) {
+        min=min(Sum-CurrSum);
+    }
+    if(currSum>=A[n]) {
+        return f(A,currSum-A[N],Sum,N-1);
+    }
+    return f(A,currSum,Sum,N-1);
+}
+
+solve(A,N) {
+    Sum = get Sum of all elements:
+    return f(A,0,Sum,N)
+}
+
+*** Make Matrix of subset sum problem. - 
+so after that mat(n,sumi) -> (sumi with n elements)
+find closest sum to the sum/2.
+
+
+6) Count the number of subset with a given difference
+
+A = Number List
+N = length of above lists
+D = Given Diff of subsets
+
+S1= Sum of Subset1
+S2= Sum of subset2
+Sum= Sum of array
+
+S1-S2=Diff
+S1+S2=Sum
+-----------
+2*S1=Diff+Sum
+S1=(Diff+Sum)/2;
+
+so problem reduces to find number of subset with given sum.
+
+
+
+7) Target Sum
+Given an array of integers A[] of length N and an integer target.
+You want to build an expression out of A by adding one of the symbols '+' and '-' before each integer in A and then concatenate all the integers.
+
+For example, if arr = {2, 1}, you can add a '+' before 2 and a '-' before 1 and concatenate them to build the expression "+2-1".
+
+
+Similar to Above Problem. (puttign sgn means getting difference for two subsets)
+
+

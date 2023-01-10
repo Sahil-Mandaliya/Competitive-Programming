@@ -1,0 +1,23 @@
+void dfs(ll s,vector<vector<ll>> g, vector<ll> &vs)
+{
+    ll i;
+    vs[s]=true;
+    for(i=0;i<g[s].size();i++)
+    {
+        if(vs[g[s][i]]==false)
+        {
+            dfs(g[s][i],g,vs);
+        }
+    }
+}
+
+void addDistance(ll s, ll distance) {
+    ll i;
+    vs[s]=1;
+    d[s]=distance;
+    for(i=0;i<v[s].size();i++) {
+        if(vs[v[s][i]]==0) {
+            addDistance(v[s][i],distance+1);
+        }
+    }
+}
