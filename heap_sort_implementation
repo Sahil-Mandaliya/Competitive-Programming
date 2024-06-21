@@ -1,0 +1,65 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void heapify(vector<int> &v, int n, int ind) {
+    int largest=ind;
+    int l=2*ind+1;
+    int r=2*ind+2;
+    if(l<n && v[l]>v[largest]) {
+        largest=l;
+    }
+    if(r<n && v[r]>v[largest]) {
+        largest=r;
+    }
+    if(largest!=ind) {
+        swap(v[ind],v[largest]);
+        heapify(v,n,largest);
+    }
+}
+
+
+void build_heap(vector<int> &v) {
+    int n=v.size();
+    int start = n/2-1;
+    for(int i=start; i>=0; i--) {
+        heapify(v,n,i);
+    }
+    for (int i=0;i<n;i++) {
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
+}
+
+void delete_root_from_heap(vector<int> &v) {
+    int n=v.size();
+    swap(v[0],v[n-1]);
+    v.pop_back();
+    cout<<"New heap size = "<<v.size()<<endl;
+    build_heap(v);
+}
+
+vector<int> heap_sort(vector<int> &v) {
+    int n= v.size();
+    build_heap(v);
+    vector<int> updated_heap;
+    for(int i=0;i<n;i++) {
+        updated_heap.push_back(v[0]);
+        delete_root_from_heap(v);
+    }
+    return updated_heap;
+}
+
+int main() {
+    int n;
+    vector<int> v{6,10,27,3,7,10,45,18,18,18};
+    n=v.size();
+    vector<int> new_v = heap_sort(v);
+    n=new_v.size();
+    for(int i=0;i<n;i++) {
+        cout<<new_v[i]<<" ";
+    }
+    cout<<endl;
+    return 0;
+}
