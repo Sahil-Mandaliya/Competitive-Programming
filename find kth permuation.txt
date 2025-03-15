@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string getPermutation(int n, int k) {
+    vector<int> v;
+    vector<int> permutations;
+    int p=1;
+    string ans="";
+    int i;
+    permutations.push_back(1);
+    for(i=1;i<=n;i++) {
+        v.push_back(i);
+        p*=i;
+        permutations.push_back(p);
+    }
+    for (i=1;i<=n;i++) {
+        int fact=permutations[n-i];
+        int index=(k/fact) + (k%fact > 0);
+        ans+=to_string(v[index-1]);
+        v.erase(v.begin() + index-1);
+        k=k%fact;
+        if (k==0) {
+            k=fact;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    int i,x,n,k;
+    cin>>n>>k;
+    string ans=getPermutation(n,k);
+    cout<<ans;
+    return 0;
+}
