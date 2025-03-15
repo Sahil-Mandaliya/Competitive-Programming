@@ -1,0 +1,5 @@
+GOLANG
+
+
+To Build executable file
+GOOS="darwin" go build

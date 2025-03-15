@@ -52,6 +52,19 @@ then if(n%2==0) then others are n*n/4-1 and n*n/4+1
 
 ### XOR SUM RELATION
 a + b = (a ^ b) + 2 * (a & b)
+int Solution::addNumbers(int A, int B) {
+    while (B != 0) {
+        int carry = A & B;
+        A = A ^ B;
+        B = carry << 1;
+    }
+    return A;
+}
 
 ### Number of primes up to N 
 N/log(N);
+
+### Fibonacci number
+ if we n times multiply the matrix M = {{1, 1},{1, 0}} to itself 
+ (in other words calculate power(M, n )), 
+ then we get the (n+1)th Fibonacci number as the element at row and column (0, 0) in the resultant matrix.
